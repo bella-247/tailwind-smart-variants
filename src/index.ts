@@ -19,15 +19,13 @@ type Breakpoint = (typeof BREAKPOINTS)[number];
 export type TwSmartObject = {
     base?: string;
     condition?: string;
-    dark?: string;
-    light?: string;
     [key: string]: string | TwSmartObject | undefined; // fallback for pseudo & breakpoints
 };
 
 export function twSmart(obj: TwSmartObject): string {
     const result: string[] = [];
 
-    function processObject(baseObj: TwSmartObject, prefix = "") {
+    function processObject(baseObj: TwSmartObject, prefix = "", isRoot = true) {
         for (const key in baseObj) {
             const value = baseObj[key as keyof TwSmartObject];
             if (!value) continue;
@@ -41,12 +39,22 @@ export function twSmart(obj: TwSmartObject): string {
 
             // Nested object
             if (typeof value === "object") {
-                processObject(value as TwSmartObject, newPrefix);
+                processObject(value as TwSmartObject, newPrefix, false);
                 continue;
             }
 
             // Base and condition are added as-is
-            if (key === "base" || key === "condition") {
+            if (key === "base") {
+                if (isRoot) {
+                    result.push(value as string);
+                } else {
+                    (value as string)
+                        .split(" ")
+                        .forEach((cls) => result.push(`${prefix}${cls}`));
+                }
+            }
+
+            if (key === "condition") {
                 result.push(value as string);
             }
             // Dark/light: split multiple classes and prefix each

@@ -1,6 +1,6 @@
 {
   "name": "tailwind-smart-variants",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A utility for clean, responsive, theme-aware Tailwind CSS classes with conditional support",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

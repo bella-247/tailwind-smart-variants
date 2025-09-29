@@ -71,13 +71,15 @@ describe("twSmart", () => {
             base: "px-4 py-2 rounded",
             hover: "bg-blue-500",
             focus: "ring-2",
-            sm: { hover: "bg-blue-600", focus: "ring-4" },
+            sm: { base : "text-sm", hover: "bg-blue-600", focus: "ring-4" },
             md: { active: "bg-red-500" },
-            dark: "text-white",
+            dark: {
+                base : "text-white", sm : { hover: "bg-blue-700" },
+            },
             condition: "font-bold",
         });
         expect(result).toBe(
-            "px-4 py-2 rounded hover:bg-blue-500 focus:ring-2 sm:hover:bg-blue-600 sm:focus:ring-4 md:active:bg-red-500 dark:text-white font-bold"
+            "px-4 py-2 rounded hover:bg-blue-500 focus:ring-2 sm:text-sm sm:hover:bg-blue-600 sm:focus:ring-4 md:active:bg-red-500 dark:text-white dark:sm:hover:bg-blue-700 font-bold"
         );
     });
 });
