@@ -1,0 +1,35 @@
+{
+  "name": "tailwind-smart-variants",
+  "version": "1.0.0",
+  "description": "A utility for clean, responsive, theme-aware Tailwind CSS classes with conditional support",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "test": "vitest",
+    "lint": "eslint src --ext .ts",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "tailwind",
+    "tailwindcss",
+    "variants",
+    "twMerge",
+    "utility",
+    "react",
+    "nextjs"
+  ],
+  "author": "Abel Mekonnen",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.47.0",
+    "prettier": "^3.0.0",
+    "ts-node": "^10.9.2",
+    "tsup": "^6.6.0",
+    "typescript": "^5.9.2",
+    "vitest": "^0.32.4"
+  },
+  "dependencies": {
+    "tailwind-merge": "^1.14.0"
+  }
+}
