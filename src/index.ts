@@ -21,8 +21,8 @@ export type TwSmartObject = {
     condition?: string;
     dark?: string;
     light?: string;
-} & Partial<Record<PseudoClass, string | TwSmartObject>> &
-    Partial<Record<Breakpoint, string | TwSmartObject>>;
+    [key: string]: string | TwSmartObject | undefined; // fallback for pseudo & breakpoints
+};
 
 export function twSmart(obj: TwSmartObject): string {
     const result: string[] = [];
